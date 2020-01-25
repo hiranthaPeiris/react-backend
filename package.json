@@ -1,0 +1,29 @@
+{
+  "name": "react-backend",
+  "version": "1.0.0",
+  "description": "Node backend for vivoxa erp app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hiranthaPeiris/react-backend.git"
+  },
+  "keywords": [
+    "react-node",
+    "node-backend"
+  ],
+  "author": "Hirantha Peiris",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hiranthaPeiris/react-backend/issues"
+  },
+  "homepage": "https://github.com/hiranthaPeiris/react-backend#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.8.9"
+  }
+}
