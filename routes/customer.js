@@ -1,47 +1,65 @@
 const router = require("express").Router();
 
 let Test = require("../models/test.model");
+let Customer = require("../models/customer.model");
 
 router.route("/").get((req, res) => {
-  Test.find()
-    .then(test => res.json(test))
+  Customer.find()
+    .then(customer => res.json(customer))
     .catch(err => res.status(400).json("Error" + err));
   console.log("get");
 });
 
 router.route("/add").post((req, res) => {
-  // const fname = req.body.fname;
-  // const mname = req.body.mname;
-  // const lname = req.body.lname;
-  // const date = Date.parse(req.body.date);
-  // const newCust = new Customer({
-  //   name: {
-  //     firstName: fname,
-  //     middleName: mname,
-  //     lastName: lname
-  //   },
-  //   dateOfBirth: date
-  // });
-  const name = req.body.name.fname;
+  const fname = req.body.name.fname;
+  const mname = req.body.name.mname;
   const lname = req.body.name.lname;
-  console.log(name + " " + lname);
+  const addLine1 = req.body.address.line1;
+  const addLine2 = req.body.address.line2;
+  const city = req.body.address.city;
+  const zip = req.body.address.zip;
+  const contact = req.body.contact;
+  const dob = Date.parse(req.body.date);
 
-  const newTest = new Test({
+  const newCust = new Customer({
     name: {
-      fname: name,
+      fname: fname,
+      mname: mname,
       lname: lname
-    }
+    },
+    address: {
+      line1: addLine1,
+      line2: addLine2,
+      city: city,
+      zip: zip
+    },
+    contactNum: contact,
+    dateOfBirth: dob
   });
 
-  // newCust
-  //   .save()
-  //   .then(() => res.json("Customer added"))
-  //   .catch(err => res.status(400).json("Error" + err));
+  // const name = req.body.name.fname;
+  // const lname = req.body.name.lname;
+  // const contact = req.body.contact;
 
-  newTest
+  // console.log(name + " " + lname);
+
+  // const newTest = new Test({
+  //   name: {
+  //     fname: name,
+  //     lname: lname
+  //   },
+  //   contact: contact
+  // });
+
+  newCust
     .save()
-    .then(() => res.json("Test added"))
+    .then(() => res.json("Customer added"))
     .catch(err => res.status(400).json("Error" + err));
+
+  //   newTest
+  //     .save()
+  //     .then(() => res.json("Test added"))
+  //     .catch(err => res.status(400).json("Error" + err));
 });
 
 module.exports = router;

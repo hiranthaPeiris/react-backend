@@ -12,7 +12,8 @@ const TestSchema = new Schema(
         type:String,
         required:true
       }
-    }
+    },
+    contact:[Number]
   },
   {
     timestamps: true
