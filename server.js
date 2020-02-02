@@ -12,13 +12,16 @@ app.use(express.json());
 
 //conect mongo
 mongoose
-  .connect("mongodb://mongo:27017/react-backend", { useNewUrlParser: true })
+  .connect("mongodb://localhost:27017/react-backend",{ useNewUrlParser: true ,useUnifiedTopology: true})
   .then(() => console.log("Mongo Connected"))
   .catch(err => console.log("error connecting" + err));
 
 app.get("/", (req, res) => {
   res.send("hello node");
 });
+
+const customerRouter = require("./routes/customer");
+app.use("/customer", customerRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
