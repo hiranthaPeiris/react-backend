@@ -2,6 +2,8 @@ const router = require("express").Router();
 
 let Test = require("../models/test.model");
 let Customer = require("../models/customer.model");
+let LicenseData = require("../models/license.model");
+let AddressData = require("../models/address.model");
 
 router.route("/").get((req, res) => {
   Customer.find()
@@ -20,21 +22,33 @@ router.route("/add").post((req, res) => {
   const zip = req.body.address.zip;
   const contact = req.body.contact;
   const dob = Date.parse(req.body.date);
+  const lType = req.body.license.lType;
+  const vClass = req.body.license.vClass;
+  const vType = req.body.license.vType;
+  const trainType = req.body.license.trainType;
 
+  const newAddress = new AddressData({
+    line1: addLine1,
+    line2: addLine2,
+    city: city,
+    zip: zip
+  });
+  const newLicense = new LicenseData({
+    lType: lType,
+    vClass: vClass,
+    vType: vType,
+    trainType: trainType
+  });
   const newCust = new Customer({
     name: {
       fname: fname,
       mname: mname,
       lname: lname
     },
-    address: {
-      line1: addLine1,
-      line2: addLine2,
-      city: city,
-      zip: zip
-    },
+    address: newAddress,
     contactNum: contact,
-    dateOfBirth: dob
+    dateOfBirth: dob,
+    license: newLicense
   });
 
   // const name = req.body.name.fname;
