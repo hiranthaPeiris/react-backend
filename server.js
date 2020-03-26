@@ -10,9 +10,10 @@ const port = process.env.PORT || 4000;
 app.use(cors());
 app.use(express.json());
 
+const uri = process.env.AZURE_URI;
 //conect mongo
 mongoose
-  .connect("mongodb://localhost:27017/react-backend",{ useNewUrlParser: true ,useUnifiedTopology: true})
+  .connect(uri,{useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("Mongo Connected"))
   .catch(err => console.log("error connecting" + err));
 
